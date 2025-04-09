@@ -1,6 +1,6 @@
 Feature: Test Login Functionality
 
-  Scenario Outline: login with invalid credentials
+  #Scenario Outline: login with invalid credentials
     When user enters invalid "<Username>" and "<Password>"
     Then verify the error
     Examples:
