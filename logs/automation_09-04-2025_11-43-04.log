@@ -1,0 +1,11 @@
+09-04-2025 11:43:14 [main] INFO  stepdefinitions.LoginSteps - Login with invalid credentials.-- jay / 132564
+09-04-2025 11:43:15 [main] INFO  stepdefinitions.LoginSteps - Validate the invalid user error message.Invalid user or password
+09-04-2025 11:43:19 [main] INFO  stepdefinitions.LoginSteps - Login with invalid credentials.-- jaySoni / Openxcell@2023
+09-04-2025 11:43:19 [main] INFO  stepdefinitions.LoginSteps - Validate the invalid user error message.Invalid user or password
+09-04-2025 11:43:23 [main] INFO  stepdefinitions.LoginSteps - Login with invalid credentials.--  / 
+09-04-2025 11:43:24 [main] INFO  stepdefinitions.LoginSteps - Validate the invalid user error message.Invalid user or password
+09-04-2025 11:43:33 [main] INFO  stepdefinitions.LoginSteps - Login with valid user's credentials.
+09-04-2025 11:43:33 [main] INFO  stepdefinitions.LoginSteps - Redmine Home screen is presented.
+09-04-2025 11:43:33 [main] INFO  stepdefinitions.CreateBug - Project's dropdown is present on the screen.
+09-04-2025 11:43:37 [main] INFO  stepdefinitions.CreateBug - Clicked on dropdown and select QA Internal as a Project
+09-04-2025 11:43:37 [main] INFO  stepdefinitions.CreateBug - User is redirected on Project Overview screen
