@@ -11,4 +11,15 @@ Feature: Create a Bug
     Given User should be on the New Issue Screen
     And   Fill all the required fields in the form
     When  Click on Create button
-    Then  New issue should create
+    Then  New issue should create and Back to issue screen
+
+    #Add Start date and Due date in newly created issue.
+    Scenario: Update a bug
+      Given User should be on bug details screen.
+      And   Click on Edit
+      When  Set Start date and Due date for the existing opened issue
+      And   Click on Submit button
+      Then  Issue should be update
+
+
+

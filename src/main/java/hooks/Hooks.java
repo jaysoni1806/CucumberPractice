@@ -9,18 +9,30 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class Hooks {
     private static final Logger logger = LogManager.getLogger(Hooks.class);
+    public static Properties prop = new Properties();
+
     public static String BugId;
+
     @BeforeTest
-    public void beforeScenario() {
+    public void beforeScenario()  {
+        try {
+            prop.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/java/Properties/config.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         DriverFactory.setDriver();
-        DriverFactory.getDriver().get("https://redmine.openxcell.dev/login");
+        DriverFactory.getDriver().get(prop.getProperty("url"));
         DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
-
     @AfterStep
     public void afterStep(Scenario scenario) {
         if (scenario.isFailed()) {
@@ -29,8 +41,7 @@ public class Hooks {
             logger.error("Step failed: " + scenario.getName());
         }
     }
-
-    @AfterSuite
+   // @AfterSuite
     public void tearDown(){
         DriverFactory.quiteDriver();
     }

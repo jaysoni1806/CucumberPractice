@@ -1,6 +1,6 @@
 Feature: Test Login Functionality
 
-  #Scenario Outline: login with invalid credentials
+#  Scenario Outline: login with invalid credentials
     When user enters invalid "<Username>" and "<Password>"
     Then verify the error
     Examples:
@@ -8,7 +8,6 @@ Feature: Test Login Functionality
     |  jay     | 132564         |
     |  jaySoni | Openxcell@2023 |
     |          |                |
-
 
   Scenario: Login With Valid Credentials
     When user enters valid username and password

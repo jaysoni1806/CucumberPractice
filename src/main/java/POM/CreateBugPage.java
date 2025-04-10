@@ -3,6 +3,7 @@ package POM;
 import com.DriverSetup.DriverFactory;
 import com.Utils.commonUtility;
 import hooks.Hooks;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -33,13 +34,17 @@ public class CreateBugPage {
     @FindBy(id = "issue_custom_field_values_2") public WebElement eleScreenName;
     @FindBy(name = "commit") public WebElement eleCreateButton;
     @FindBy(id = "flash_notice") public WebElement eleSuccessBugCreateMessage;
+    @FindBy(linkText = "Edit") public WebElement eleEdit;
+    @FindBy(name = "issue[start_date]") public WebElement elsStartDate;
+    @FindBy(name = "issue[due_date]") public WebElement eleDueDate;
+    @FindBy(xpath = "//div[@id='update']//input[@name='commit']") public WebElement eleSubmitButton;
+
 
     public void toCheckThatProjectDropDownIsPresentOrNot() {
         if(!util.waitUntilElementVisible(eleProjectDropDown).isDisplayed()){
             System.out.println(eleProjectDropDown+" Element id not present");
         }
     }
-
     public void selectProject(String project) {
         eleProjectDropDown.click();
         util.waitSometime();
@@ -56,7 +61,6 @@ public class CreateBugPage {
     public String currentProject(){
         return util.waitUntilElementVisible(eleCurrentProject).getText();
     }
-
     public void clickOnIssuesTab() {
         util.waitUntilElementClickable(eleIssuesTab).click();
     }
@@ -71,7 +75,6 @@ public class CreateBugPage {
     public boolean checkNewIssueScreen(){
         return util.waitForElementVisible(eleNewIssuesScreen);
     }
-
     public void fillTheIssuesFields(String subject, String description, String priority, String assignee, String severity, String screenName) {
         fillSubjectDetails(subject);
         fillDescription(description);
@@ -80,32 +83,26 @@ public class CreateBugPage {
         selectSeverity(severity);
         fillScreenName(screenName);
     }
-
     private void fillScreenName(String screenName) {
         eleScreenName.clear();
         eleScreenName.sendKeys(screenName);
     }
-
     private void selectSeverity(String severity) {
         Select select = new Select(elseSelectSeverity);
         select.selectByVisibleText(severity);
     }
-
     private void selectAssignee(String assignee) {
         Select select = new Select(eleSelectAssignee);
         select.selectByVisibleText(assignee);
     }
-
     private void selectPriority(String priority) {
         Select select = new Select(eleSelectPriority);
         select.selectByVisibleText(priority);
     }
-
     private void fillDescription(String description) {
         eleDescription.clear();
         eleDescription.sendKeys(description);
     }
-
     private void fillSubjectDetails(String subject) {
         eleSubject.clear();
         eleSubject.sendKeys(subject);
@@ -113,12 +110,31 @@ public class CreateBugPage {
     public void clickCreateButton() {
         util.waitUntilElementClickable(eleCreateButton).click();
         util.waitForElementVisible(eleSuccessBugCreateMessage);
-
     }
-
     public String verifyTheIssueCreate() {
         Hooks.BugId = eleSuccessBugCreateMessage.getText().replaceAll("\\D+", "");
-        System.out.println(Hooks.BugId);
         return eleSuccessBugCreateMessage.getText().replaceAll("#\\d+", "");
     }
+    public void navigateToBugDetailsScreen(String bugId) {
+        WebElement bugTR = DriverFactory.getDriver().findElement(By.id("issue-"+bugId));
+        bugTR.findElement(By.className("id")).click();
+    }
+    public void clickOnEdit() {
+        util.waitUntilElementClickable(eleEdit).click();
+    }
+    public void setDates() {
+        util.waitUntilElementVisible(elsStartDate).clear();
+        util.waitUntilElementVisible(elsStartDate).sendKeys(Hooks.prop.getProperty("issueStartDate"));
+        util.waitUntilElementVisible(eleDueDate).clear();
+        util.waitUntilElementVisible(eleDueDate).sendKeys(Hooks.prop.getProperty("issueDueDate"));
+    }
+    public void clickSubmitButton() {
+        util.waitUntilElementClickable(eleSubmitButton).click();
+        util.waitForElementVisible(eleSuccessBugCreateMessage);
+    }
+    public String verifyTheIssueUpdate() {
+        return eleSuccessBugCreateMessage.getText();
+    }
+
+
 }
