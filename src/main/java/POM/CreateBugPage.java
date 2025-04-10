@@ -2,6 +2,7 @@ package POM;
 
 import com.DriverSetup.DriverFactory;
 import com.Utils.commonUtility;
+import hooks.Hooks;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -30,10 +31,10 @@ public class CreateBugPage {
     @FindBy(id = "issue_assigned_to_id") public WebElement eleSelectAssignee;
     @FindBy(id = "issue_custom_field_values_1") public WebElement elseSelectSeverity;
     @FindBy(id = "issue_custom_field_values_2") public WebElement eleScreenName;
+    @FindBy(name = "commit") public WebElement eleCreateButton;
+    @FindBy(id = "flash_notice") public WebElement eleSuccessBugCreateMessage;
 
-
-
-    public void toCheckThatProjectDropDownIsPresentOrNot() throws InterruptedException {
+    public void toCheckThatProjectDropDownIsPresentOrNot() {
         if(!util.waitUntilElementVisible(eleProjectDropDown).isDisplayed()){
             System.out.println(eleProjectDropDown+" Element id not present");
         }
@@ -108,5 +109,16 @@ public class CreateBugPage {
     private void fillSubjectDetails(String subject) {
         eleSubject.clear();
         eleSubject.sendKeys(subject);
+    }
+    public void clickCreateButton() {
+        util.waitUntilElementClickable(eleCreateButton).click();
+        util.waitForElementVisible(eleSuccessBugCreateMessage);
+
+    }
+
+    public String verifyTheIssueCreate() {
+        Hooks.BugId = eleSuccessBugCreateMessage.getText().replaceAll("\\D+", "");
+        System.out.println(Hooks.BugId);
+        return eleSuccessBugCreateMessage.getText().replaceAll("#\\d+", "");
     }
 }

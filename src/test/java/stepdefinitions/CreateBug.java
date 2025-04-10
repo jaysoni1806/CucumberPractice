@@ -38,16 +38,19 @@ public class CreateBug {
     public void clickOnIssuesTabAndVerifyThatIssueScreenIsPresentOrNot() {
         crtBug.clickOnIssuesTab();
         Assert.assertEquals(crtBug.screenNameReturn(),"Issues");
+        logger.info("User is redirected on Issue screen");
     }
 
     @And("Check that New issue button and click on it if present")
     public void checkThatNewIssueButtonAndClickOnItIfPresent() {
         crtBug.clickNewIssueButton();
+        logger.info("Clicked on New issue button");
     }
 
     @Given("User should be on the New Issue Screen")
     public void userShouldBeOnTheNewIssueScreen() {
         Assert.assertTrue(crtBug.checkNewIssueScreen(),"New Issue Screen does not presented yet.");
+        logger.info("User is redirected on New Issue screen");
     }
 
     @And("Fill all the required fields in the form")
@@ -63,14 +66,18 @@ public class CreateBug {
             screenName = row[5];
         }
         crtBug.fillTheIssuesFields(subject, description, priority, assignee, severity, screenName);
+        logger.info("Fill all the required bug details.");
     }
 
     @When("Click on Create button")
     public void clickOnCreateButton() {
-        
+        crtBug.clickCreateButton();
+        logger.info("Click on Create button.");
     }
 
     @Then("New issue should create")
     public void newIssueShouldCreate() {
+        Assert.assertEquals(crtBug.verifyTheIssueCreate(),"Issue  created.");
+        logger.info("New bug created-> "+ Hooks.BugId);
     }
 }
