@@ -17,7 +17,7 @@ public class CreateBug {
     private static final Logger logger = LogManager.getLogger(CreateBug.class);
     CreateBugPage crtBug = new CreateBugPage();
     @Given("Project dropdown should be present")
-    public void projectDropdownShouldBePresent() throws InterruptedException {
+    public void projectDropdownShouldBePresent() {
         crtBug.toCheckThatProjectDropDownIsPresentOrNot();
         logger.info("Project's dropdown is present on the screen.");
     }
