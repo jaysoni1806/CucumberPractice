@@ -6,8 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class commonUtility {
 
@@ -31,6 +34,7 @@ public class commonUtility {
         return true;
     }
 
+    @org.jetbrains.annotations.NotNull
     public static ArrayList<String[]> excelReader(){
         Xls_Reader reader = new Xls_Reader(System.getProperty("user.dir")+"/src/test/resources/External Files/Redmine_issue_format.xlsx");
         ArrayList<String[]> myData = new ArrayList<>();
@@ -52,5 +56,10 @@ public class commonUtility {
         return myData;
     }
 
-
+    public static String getDateAndTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy HH-mm-ss");
+        Date date = new Date();
+        String currentDate = dateFormat.format(date);
+        return currentDate;
+    }
 }

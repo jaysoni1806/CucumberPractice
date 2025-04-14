@@ -20,6 +20,3 @@ Feature: Create a Bug
       When  Set Start date and Due date for the existing opened issue
       And   Click on Submit button
       Then  Issue should be update
-
-
-

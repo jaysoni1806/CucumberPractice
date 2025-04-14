@@ -1,0 +1,16 @@
+14-04-2025 13:00:02 [main] INFO  stepdefinitions.LoginSteps - Login with valid user's credentials.
+14-04-2025 13:00:02 [main] INFO  stepdefinitions.LoginSteps - Redmine Home screen is presented.
+14-04-2025 13:00:02 [main] INFO  stepdefinitions.CreateBugSteps - Project's dropdown is present on the screen.
+14-04-2025 13:00:05 [main] INFO  stepdefinitions.CreateBugSteps - Clicked on dropdown and select QA Internal as a Project
+14-04-2025 13:00:05 [main] INFO  stepdefinitions.CreateBugSteps - User is redirected on Project Overview screen
+14-04-2025 13:00:05 [main] INFO  stepdefinitions.CreateBugSteps - User is redirected on Issue screen
+14-04-2025 13:00:06 [main] INFO  stepdefinitions.CreateBugSteps - Clicked on New issue button
+14-04-2025 13:00:06 [main] INFO  stepdefinitions.CreateBugSteps - User is redirected on New Issue screen
+14-04-2025 13:00:07 [main] INFO  stepdefinitions.CreateBugSteps - Fill all the required bug details.
+14-04-2025 13:00:08 [main] INFO  stepdefinitions.CreateBugSteps - Click on Create button.
+14-04-2025 13:00:09 [main] INFO  stepdefinitions.CreateBugSteps - New bug created-> 20796, and back to issue listing.
+14-04-2025 13:00:09 [main] INFO  stepdefinitions.CreateBugSteps - Clicked on issue id and navigate to view issue screen.
+14-04-2025 13:00:10 [main] INFO  stepdefinitions.CreateBugSteps - Click on Edit and navigate to edit screen.
+14-04-2025 13:00:10 [main] INFO  stepdefinitions.CreateBugSteps - Update the Start Date and the Due Date.
+14-04-2025 13:01:04 [main] INFO  stepdefinitions.CreateBugSteps - Click on Submit button.
+14-04-2025 13:01:04 [main] INFO  stepdefinitions.CreateBugSteps - Issue successfully updated.

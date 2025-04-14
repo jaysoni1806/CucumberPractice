@@ -1,8 +1,11 @@
 package hooks;
 
 import com.DriverSetup.DriverFactory;
+import extentreportmanager.ExtentManager;
 import io.cucumber.java.AfterStep;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import listener.ExtentReport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -23,7 +26,7 @@ public class Hooks {
     public static String BugId;
 
     @BeforeTest
-    public void beforeScenario()  {
+    public void beforeScenario() throws FileNotFoundException {
         try {
             prop.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/java/Properties/config.properties"));
         } catch (IOException e) {
@@ -32,6 +35,7 @@ public class Hooks {
         DriverFactory.setDriver();
         DriverFactory.getDriver().get(prop.getProperty("url"));
         DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //ExtentManager.ExtentSetup();
     }
     @AfterStep
     public void afterStep(Scenario scenario) {
@@ -41,8 +45,9 @@ public class Hooks {
             logger.error("Step failed: " + scenario.getName());
         }
     }
-   // @AfterSuite
+   @AfterSuite
     public void tearDown(){
         DriverFactory.quiteDriver();
+        //ExtentManager.extentFlush();
     }
 }

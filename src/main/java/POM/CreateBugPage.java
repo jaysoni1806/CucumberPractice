@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CreateBugPage {
@@ -124,9 +127,9 @@ public class CreateBugPage {
     }
     public void setDates() {
         util.waitUntilElementVisible(elsStartDate).clear();
-        util.waitUntilElementVisible(elsStartDate).sendKeys(Hooks.prop.getProperty("issueStartDate"));
+        util.waitUntilElementVisible(elsStartDate).sendKeys(getIssueStartDate());
         util.waitUntilElementVisible(eleDueDate).clear();
-        util.waitUntilElementVisible(eleDueDate).sendKeys(Hooks.prop.getProperty("issueDueDate"));
+        util.waitUntilElementVisible(eleDueDate).sendKeys(getIssueDueDate());
     }
     public void clickSubmitButton() {
         util.waitUntilElementClickable(eleSubmitButton).click();
@@ -134,6 +137,35 @@ public class CreateBugPage {
     }
     public String verifyTheIssueUpdate() {
         return eleSuccessBugCreateMessage.getText();
+    }
+
+    public String getIssueStartDate(){
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        // String currentDate = format.format(date);
+
+        // Create Calendar instance and add 2 days
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+
+        // Format the new date
+        String dateAfterTwoDays = format.format(cal.getTime());
+        return dateAfterTwoDays;
+    }
+    public String getIssueDueDate(){
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        // String currentDate = format.format(date);
+
+        // Create Calendar instance and add 2 days
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH, 3);
+
+        // Format the new date
+        String dateAfterThreeDays = format.format(cal.getTime());
+        return dateAfterThreeDays;
     }
 
 
