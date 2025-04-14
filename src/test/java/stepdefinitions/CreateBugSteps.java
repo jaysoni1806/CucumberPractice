@@ -63,12 +63,16 @@ public class CreateBugSteps {
         crtBug.fillTheIssuesFields(subject, description, priority, assignee, severity, screenName);
         logger.info("Fill all the required bug details.");
     }
+    @And("Add attachment")
+    public void addAttachment() {
+        crtBug.addIssueAttachment();
+    }
     @When("Click on Create button")
     public void clickOnCreateButton() {
         crtBug.clickCreateButton();
         logger.info("Click on Create button.");
     }
-    @Then("New issue should create and Back to issue screen")
+    @Then("New issue should create and navigate back to issue screen")
     public void newIssueShouldCreate() {
         Assert.assertEquals(crtBug.verifyTheIssueCreate(),"Issue  created.");
         crtBug.clickOnIssuesTab();
@@ -90,14 +94,34 @@ public class CreateBugSteps {
         crtBug.setDates();
         logger.info("Update the Start Date and the Due Date.");
     }
+
     @And("Click on Submit button")
     public void clickOnSubmitButton() {
         crtBug.clickSubmitButton();
         logger.info("Click on Submit button.");
     }
-    @Then("Issue should be update")
+    @Then("Issue should be update and navigate back to issue screen")
     public void issueShouldBeUpdate() {
         Assert.assertEquals(crtBug.verifyTheIssueUpdate(),"Successful update.");
-        logger.info("Issue successfully updated.");
+        crtBug.clickOnIssuesTab();
+        logger.info("Issue successfully updated and navigate back to issues listing screen");
+    }
+
+    @When("Click on Bug Id check box and perform right click action on it")
+    public void clickOnBugIdCheckBoxAndPerformRightClickActionOnIt() {
+        crtBug.performRightClickOnTheAddedIssue(Hooks.BugId);
+        logger.info("Right click on the issue and issue options popup is displays.");
+    }
+
+    @And("Observe the options and click on Delete Issue")
+    public void observeTheOptionsAndClickOnDeleteIssue() {
+        crtBug.deleteIssue();
+        logger.info("Clicked on Delete issue option.");
+    }
+
+    @Then("Issue should be deleted")
+    public void issueShouldBeDeleted() {
+        Assert.assertEquals(crtBug.verifyTheIssueIsDeleted(),"Successful deletion.");
+        logger.info("Issue successfully deleted..");
     }
 }

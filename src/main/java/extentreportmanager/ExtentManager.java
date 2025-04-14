@@ -14,7 +14,7 @@ public class ExtentManager {
     public static ExtentTest test;
 
     public static void ExtentSetup() throws FileNotFoundException {
-        extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/ExtentReport/Report_"+ commonUtility.getDateAndTime()+".html");
+        extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/Report/Extent/Report_"+ commonUtility.getDateAndTime()+".html");
         extentSparkReporter.config().setDocumentTitle("Redmine Report");
         extentSparkReporter.config().setReportName("Jay Soni");
         extentReports = new ExtentReports();

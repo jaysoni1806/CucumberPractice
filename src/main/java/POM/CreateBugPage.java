@@ -3,12 +3,15 @@ package POM;
 import com.DriverSetup.DriverFactory;
 import com.Utils.commonUtility;
 import hooks.Hooks;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,6 +44,9 @@ public class CreateBugPage {
     @FindBy(name = "issue[start_date]") public WebElement elsStartDate;
     @FindBy(name = "issue[due_date]") public WebElement eleDueDate;
     @FindBy(xpath = "//div[@id='update']//input[@name='commit']") public WebElement eleSubmitButton;
+    @FindBy(xpath = "//input[@type='file']") public WebElement eleAttachmentInput;
+    @FindBy(xpath = "//div[@id='context-menu' and not(contains(@style, 'display:none'))]") public WebElement eleBugOptions;
+    @FindBy(xpath = "//*[text()='Delete issue']") public WebElement eleDeleteOption;
 
 
     public void toCheckThatProjectDropDownIsPresentOrNot() {
@@ -138,7 +144,6 @@ public class CreateBugPage {
     public String verifyTheIssueUpdate() {
         return eleSuccessBugCreateMessage.getText();
     }
-
     public String getIssueStartDate(){
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         Date date = new Date();
@@ -167,6 +172,30 @@ public class CreateBugPage {
         String dateAfterThreeDays = format.format(cal.getTime());
         return dateAfterThreeDays;
     }
+    public void addIssueAttachment() {
+        File file = new File(System.getProperty("user.dir")+"/src/TestData/AttachemtFiles/download.png");
+        eleAttachmentInput.sendKeys(file.getAbsolutePath());
+    }
 
+    public void performRightClickOnTheAddedIssue(String bugId) {
+        WebElement bugTR = DriverFactory.getDriver().findElement(By.id("issue-"+bugId));
+        Actions actions = new Actions(DriverFactory.getDriver());
+        actions.contextClick(bugTR.findElement(By.className("checkbox"))).perform();
+    }
+
+    public void deleteIssue() {
+        if(util.waitForElementVisible(eleBugOptions)){
+            util.waitUntilElementClickable(eleDeleteOption).click();
+            Alert alert = DriverFactory.getDriver().switchTo().alert();
+            alert.accept();
+            util.waitSometime();
+        }
+        else{
+            System.out.println("Delete element does not found.");
+        }
+    }
+    public String verifyTheIssueIsDeleted() {
+        return eleSuccessBugCreateMessage.getText();
+    }
 
 }

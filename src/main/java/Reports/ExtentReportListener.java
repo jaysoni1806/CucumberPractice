@@ -1,4 +1,4 @@
-package listener;
+package Reports;
 
 import com.aventstack.extentreports.Status;
 import extentreportmanager.ExtentManager;
@@ -6,7 +6,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class ExtentReport extends ExtentManager implements ITestListener {
+public class ExtentReportListener extends ExtentManager implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
