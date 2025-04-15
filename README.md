@@ -19,6 +19,7 @@ This is a simple and powerful test automation framework created to test the **Re
 ✅ Clean code structure using **Page Object Model (POM)**  
 ✅ **Log4j Logging** to track step-by-step execution
 
+
 ---
 
 ## 🗂 Project Structure (Easy to Follow)
@@ -53,3 +54,7 @@ CucumberPractice/
 ├── pom.xml
 ├── testng.xml
 └── README.md
+```
+## **Explore the Framework**
+
+https://github.com/user-attachments/assets/3eae7902-a180-439e-91af-43444475982e
