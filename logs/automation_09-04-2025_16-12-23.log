@@ -1,5 +1,0 @@
-09-04-2025 16:12:31 [main] INFO  stepdefinitions.LoginSteps - Login with valid user's credentials.
-09-04-2025 16:12:31 [main] INFO  stepdefinitions.LoginSteps - Redmine Home screen is presented.
-09-04-2025 16:12:31 [main] INFO  stepdefinitions.CreateBugSteps - Project's dropdown is present on the screen.
-09-04-2025 16:12:34 [main] INFO  stepdefinitions.CreateBugSteps - Clicked on dropdown and select QA Internal as a Project
-09-04-2025 16:12:34 [main] INFO  stepdefinitions.CreateBugSteps - User is redirected on Project Overview screen

@@ -16,7 +16,7 @@ public class LoginSteps {
     public void enterInvalidCredentials(String username , String password) throws InterruptedException {
         // login = new Login(Hooks.driver);
         login.LoginWithInValidCred(username,password);
-        logger.info("Login with invalid credentials.-- "+username+" / "+password);
+        logger.info("Login with invalid credentials.-- {} / {}", username, password);
     }
     @Then("verify the error")
     public void verifyLoginError() throws InterruptedException {

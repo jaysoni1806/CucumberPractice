@@ -23,6 +23,7 @@ public class Hooks {
     private static final Logger logger = LogManager.getLogger(Hooks.class);
     public static Properties prop = new Properties();
 
+
     public static String BugId;
 
     @BeforeTest
@@ -37,20 +38,19 @@ public class Hooks {
         DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //ExtentManager.ExtentSetup();
     }
-    //@AfterStep
+    @AfterStep
     public void afterStep(Scenario scenario) {
-       // tearDown1(scenario);
-        /*if (scenario.isFailed()) {
+
+        if (scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
             logger.error("Step failed: " + scenario.getName());
-        }*/
+        }
     }
     @After
     public void tearDown1(Scenario scenario) {
         String scenarioName = scenario.getName();
         String status = scenario.isFailed() ? "Fail" : "Pass";
-
         ExcelResultWriter.writeResult(scenarioName, status);
     }
    @AfterSuite

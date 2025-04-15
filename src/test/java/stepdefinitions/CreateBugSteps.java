@@ -24,7 +24,7 @@ public class CreateBugSteps {
     @When("Click on project dropdown and select {string} project")
     public void clickOnProjectDropdownAndSelectProject(String project) {
         crtBug.selectProject(project);
-        logger.info("Clicked on dropdown and select "+project+" as a Project");
+        logger.info("Clicked on dropdown and select {project} as a Project");
     }
     @Then("User should redirect on the Project Overview screen")
     public void userShouldRedirectOnProjectOverviewScreen() {
