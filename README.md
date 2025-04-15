@@ -15,7 +15,6 @@ This is a simple and powerful test automation framework created to test the **Re
 
 ✅ Automates Redmine Login feature, CRUD operation on issue  
 ✅ Reads test data from Excel files (**data-driven testing**)  
-✅ Generates beautiful **HTML reports** with test status  
 ✅ Creates an **Excel summary report** (pass/fail for each test case)  
 ✅ Clean code structure using **Page Object Model (POM)**  
 ✅ **Log4j Logging** to track step-by-step execution
